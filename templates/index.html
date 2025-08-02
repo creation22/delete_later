@@ -2,12 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Cyber Incident Response</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Incident Response Tool</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <h1>Welcome to the Cybersecurity Incident Response Tool</h1>
-    <button onclick="location.href='/incident-form'">Report Incident</button>
-    <button onclick="location.href='/report'">View Reports</button>
+    <div class="container">
+        <h1>🔒 Cybersecurity Incident Response Tool</h1>
+        
+        <p style="text-align: center; font-size: 18px; color: #666; margin: 30px 0;">
+            Streamline your incident response process with our easy-to-use workflow management system.
+        </p>
+        
+        <div class="nav-buttons">
+            <a href="/incident-form" class="btn">📝 Report New Incident</a>
+            <a href="/report" class="btn btn-success">📊 View All Incidents</a>
+        </div>
+        
+        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-top: 30px;">
+            <h3 style="color: #495057; margin-top: 0;">Quick Start Guide:</h3>
+            <ol style="color: #666;">
+                <li><strong>Report Incident:</strong> Use the form to document security incidents</li>
+                <li><strong>Track Progress:</strong> Monitor incident status and resolution</li>
+                <li><strong>Manage Workflow:</strong> Update incident status as investigation progresses</li>
+            </ol>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

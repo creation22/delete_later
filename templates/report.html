@@ -2,28 +2,84 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Incident Reports</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incident Reports - Cyber IR Tool</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <h2>Incident Reports</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th><th>Title</th><th>Description</th><th>Severity</th><th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for incident in incidents %}
-            <tr>
-                <td>{{ incident.id }}</td>
-                <td>{{ incident.title }}</td>
-                <td>{{ incident.description }}</td>
-                <td>{{ incident.severity }}</td>
-                <td>{{ incident.status }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="container">
+        <h1>📊 Incident Reports</h1>
+        
+        <div class="nav-buttons">
+            <a href="/" class="btn">🏠 Home</a>
+            <a href="/incident-form" class="btn">📝 Report New Incident</a>
+        </div>
+
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="flash flash-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        
+        {% if incidents %}
+            <div style="margin: 20px 0;">
+                <p><strong>Total Incidents:</strong> {{ incidents|length }}</p>
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Severity</th>
+                        <th>Status</th>
+                        <th>Created</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for incident in incidents %}
+                    <tr>
+                        <td><strong>#{{ incident.id }}</strong></td>
+                        <td>
+                            <a href="/incident/{{ incident.id }}" style="text-decoration: none; color: #007bff; font-weight: bold;">
+                                {{ incident.title }}
+                            </a>
+                        </td>
+                        <td>
+                            <span class="severity severity-{{ incident.severity.lower() }}">
+                                {{ incident.severity }}
+                            </span>
+                        </td>
+                        <td>
+                            <span class="status status-{{ incident.status.lower().replace(' ', '-') }}">
+                                {{ incident.status }}
+                            </span>
+                        </td>
+                        <td>{{ incident.created_at }}</td>
+                        <td>
+                            <a href="/incident/{{ incident.id }}" class="btn" style="padding: 5px 10px; font-size: 12px;">
+                                👁️ View
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <div style="text-align: center; padding: 40px; background: #f8f9fa; border-radius: 8px;">
+                <h3 style="color: #666;">No incidents reported yet</h3>
+                <p style="color: #999;">When incidents are reported, they will appear here.</p>
+                <a href="/incident-form" class="btn">📝 Report First Incident</a>
+            </div>
+        {% endif %}
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

@@ -1,34 +1,268 @@
 body {
     font-family: Arial, sans-serif;
+    margin: 0;
     padding: 20px;
-    background: #f2f2f2;
+    background: #f5f5f5;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 h1, h2 {
     color: #333;
+    margin-bottom: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #d63384;
+}
+
+/* Navigation */
+.nav-buttons {
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* Forms */
+form {
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+form label {
+    display: block;
+    margin: 15px 0 5px 0;
+    font-weight: bold;
+    color: #555;
 }
 
 form input, form textarea, form select {
-    margin: 8px 0;
-    width: 300px;
-    padding: 8px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
 }
 
-button {
+form textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+/* Buttons */
+button, .btn {
+    display: inline-block;
     padding: 10px 20px;
-    margin-top: 10px;
+    margin: 10px 5px;
     background-color: #007bff;
     color: white;
+    text-decoration: none;
     border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
 }
 
+button:hover, .btn:hover {
+    background-color: #0056b3;
+}
+
+.btn-success {
+    background-color: #28a745;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* Tables */
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    background: white;
 }
 
 table, th, td {
-    border: 1px solid #ccc;
-    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    color: #495057;
+}
+
+tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+tr:hover {
+    background-color: #e9ecef;
+}
+
+/* Status badges */
+.status {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.status-open {
+    background-color: #ffeaa7;
+    color: #2d3436;
+}
+
+.status-in-progress {
+    background-color: #74b9ff;
+    color: white;
+}
+
+.status-resolved {
+    background-color: #00b894;
+    color: white;
+}
+
+.status-closed {
+    background-color: #636e72;
+    color: white;
+}
+
+/* Severity badges */
+.severity {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.severity-low {
+    background-color: #00b894;
+    color: white;
+}
+
+.severity-medium {
+    background-color: #fdcb6e;
+    color: #2d3436;
+}
+
+.severity-high {
+    background-color: #e17055;
+    color: white;
+}
+
+/* Flash messages */
+.flash-messages {
+    margin: 20px 0;
+}
+
+.flash {
+    padding: 10px 15px;
+    margin: 10px 0;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.flash-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.flash-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Incident details */
+.incident-details {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 4px;
+    margin: 20px 0;
+}
+
+.incident-meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.meta-item {
+    background: white;
+    padding: 15px;
+    border-radius: 4px;
+    border-left: 4px solid #007bff;
+}
+
+.meta-label {
+    font-weight: bold;
+    color: #666;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.meta-value {
+    font-size: 16px;
+    color: #333;
+    margin-top: 5px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+        margin: 10px;
+    }
+    
+    table {
+        font-size: 12px;
+    }
+    
+    .nav-buttons {
+        text-align: center;
+    }
+    
+    .nav-buttons .btn {
+        display: block;
+        margin: 10px auto;
+        width: 200px;
+    }
 }

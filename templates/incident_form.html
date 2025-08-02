@@ -2,23 +2,59 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Report Incident</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Incident - Cyber IR Tool</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <h2>Incident Reporting Form</h2>
-    <form action="/submit-incident" method="POST">
-        <label>Title:</label>
-        <input type="text" name="title" required><br>
-        <label>Description:</label>
-        <textarea name="description" required></textarea><br>
-        <label>Severity:</label>
-        <select name="severity">
-            <option>Low</option>
-            <option>Medium</option>
-            <option>High</option>
-        </select><br>
-        <button type="submit">Submit</button>
-    </form>
+    <div class="container">
+        <h1>📝 Report Security Incident</h1>
+        
+        <div class="nav-buttons">
+            <a href="/" class="btn">🏠 Home</a>
+            <a href="/report" class="btn btn-success">📊 View Reports</a>
+        </div>
+
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="flash flash-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        
+        <form action="/submit-incident" method="POST">
+            <label for="title">Incident Title *</label>
+            <input type="text" id="title" name="title" required placeholder="Brief description of the incident">
+            
+            <label for="description">Detailed Description *</label>
+            <textarea id="description" name="description" required placeholder="Provide detailed information about what happened, when it was discovered, and any immediate actions taken..."></textarea>
+            
+            <label for="severity">Severity Level *</label>
+            <select id="severity" name="severity" required>
+                <option value="">Select severity...</option>
+                <option value="Low">🟢 Low - Minor impact, no immediate threat</option>
+                <option value="Medium">🟡 Medium - Moderate impact, potential threat</option>
+                <option value="High">🔴 High - Significant impact, immediate attention required</option>
+            </select>
+            
+            <button type="submit">🚨 Submit Incident Report</button>
+        </form>
+        
+        <div style="background: #e9ecef; padding: 15px; border-radius: 4px; margin-top: 20px;">
+            <h4 style="margin-top: 0; color: #495057;">💡 Reporting Tips:</h4>
+            <ul style="color: #666; margin: 0;">
+                <li>Include as much detail as possible</li>
+                <li>Note the time when the incident was first discovered</li>
+                <li>Mention any systems or data that may be affected</li>
+                <li>Document any immediate containment actions taken</li>
+            </ul>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
